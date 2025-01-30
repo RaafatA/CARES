@@ -64,3 +64,12 @@ qiime phylogeny align-to-tree-mafft-fasttree \
   --o-tree Results/tree/unrooted-tree.qza \
   --o-rooted-tree Results/tree/rooted-tree.qza
 ```
+
+``` bash 
+qiime diversity core-metrics-phylogenetic \
+  --i-phylogeny Results/tree/rooted-tree.qza \
+  --i-table Results/denoise/table.qzv \
+  --p-sampling-depth 427 \
+  --m-metadata-file fat-metadata.txt \
+  --output-dir Results/core-metrics-results
+```
