@@ -140,3 +140,83 @@ print(final_plot)
 
 # Save the final plot for publication
 ggsave("growth_data_visualization.png", final_plot, width = 10, height = 12, dpi = 300)
+
+
+
+
+
+
+#######################################################################################################
+#######################################################################################################
+
+
+# Custom theme for publication-quality plots
+theme_publication <- function(base_size = 14, base_family = "sans") {
+  theme_minimal(base_size = base_size, base_family = base_family) +
+    theme(
+      text = element_text(color = "black"),
+      axis.title = element_text(face = "bold", size = rel(1.2)),
+      axis.text = element_text(size = rel(1)),
+      axis.line = element_line(color = "black"),
+      panel.grid.major = element_line(linetype = "dotted", color = "gray80"),
+      panel.grid.minor = element_blank(),
+      legend.position = "top",
+      legend.title = element_text(face = "bold"),
+      strip.text = element_text(face = "bold", size = rel(1.1))
+    )
+}
+
+# Perform LSD test for Treatment
+anova_treatment <- aov(Leaf_width ~ Treatment, data = data)
+lsd_treatment <- LSD.test(anova_treatment, "Treatment", alpha = 0.05, group = TRUE)
+lsd_treatment_groups <- lsd_treatment$groups
+lsd_treatment_groups$Treatment <- rownames(lsd_treatment_groups)
+
+# Merge LSD grouping with the original data
+data <- data %>%
+  left_join(lsd_treatment_groups, by = "Treatment")
+
+# Boxplot: Leaf_width vs. Treatment with LSD grouping
+p1 <- ggplot(data, aes(x = Treatment, y = Leaf_width, fill = Treatment)) +
+  geom_boxplot(outlier.shape = NA, alpha = 0.7) +
+  geom_jitter(width = 0.2, alpha = 0.5, size = 1.5) +
+  geom_text(aes(label = groups, y = max(Leaf_width) + 0.2), 
+            position = position_dodge(width = 0.75), vjust = -0.5, size = 5) +
+  labs(title = "Effect of Treatment on Leaf Width",
+       x = "Treatment",
+       y = "Leaf Width (cm)") +
+  theme_publication() +
+  scale_fill_manual(values = c("#1f77b4", "#ff7f0e", "#2ca02c"))  # Custom colors
+
+# Perform LSD test for Genotype (grouped by Treatment)
+anova_genotype <- aov(Leaf_width ~ Treatment + Genotype, data = data)
+lsd_genotype <- LSD.test(anova_genotype, "Genotype", alpha = 0.05, group = TRUE)
+lsd_genotype_groups <- lsd_genotype$groups
+lsd_genotype_groups$Genotype <- rownames(lsd_genotype_groups)
+
+# Merge LSD grouping with the summarized data
+summary_data <- data %>%
+  group_by(Treatment, Genotype) %>%
+  summarise(Mean_Leaf_width = mean(Leaf_width, na.rm = TRUE),
+            SE_Leaf_width = sd(Leaf_width, na.rm = TRUE) / sqrt(n())) %>%
+  left_join(lsd_genotype_groups, by = "Genotype")
+
+# Bar plot: Leaf_width vs. Genotype, grouped by Treatment with LSD grouping
+p2 <- ggplot(summary_data, aes(x = Genotype, y = Mean_Leaf_width, fill = Treatment)) +
+  geom_bar(stat = "identity", position = position_dodge(), alpha = 0.8) +
+  geom_errorbar(aes(ymin = Mean_Leaf_width - SE_Leaf_width, ymax = Mean_Leaf_width + SE_Leaf_width),
+                position = position_dodge(width = 0.9), width = 0.2, size = 0.8) +
+  geom_text(aes(label = groups, y = Mean_Leaf_width + SE_Leaf_width + 0.1), 
+            position = position_dodge(width = 0.9), vjust = -0.5, size = 5) +
+  labs(title = "Leaf Width by Genotype and Treatment",
+       x = "Genotype",
+       y = "Mean Leaf Width (cm)") +
+  theme_publication() +
+  scale_fill_manual(values = c("#1f77b4", "#ff7f0e", "#2ca02c"))  # Custom colors
+
+# Arrange plots in a grid
+final_plot <- ggarrange(p1, p2, ncol = 1, labels = c("A", "B"))
+print(final_plot)
+
+# Save the final plot for publication
+ggsave("growth_data_visualization_with_LSD.png", final_plot, width = 10, height = 10, dpi = 300)
