@@ -21,6 +21,8 @@ qiime vsearch merge-pairs \
   --o-merged-sequences  \
   --o-unmerged-sequences sequences-unjoined.qza
 ```
+
+#  The overlab region was to small to merge pairs so we used dada2 with overlap 20
 5. Denoising reads
 ``` bash 
 qiime deblur denoise-16S \
@@ -31,7 +33,29 @@ qiime deblur denoise-16S \
   --o-table Results/denoise/table.qza \
   --o-stats Results/denoise/denoising-stats.qza
 ```
+``` bash
+qiime dada2 denoise-paired \
+  --i-demultiplexed-seqs sequences.qza \
+  --p-trunc-len-f 250 \
+  --p-trunc-len-r 250 \
+  --p-min-overlap 20 \
+  --o-table Results/denoise-dada2/table.qza \
+  --o-representative-sequences Results/denoise-dada2/rep-seqs.qza \
+  --o-denoise-stats Results/denoise-dada2/denoiseing-stats.qza
 
+qiime feature-table summarize \
+  --i-table Results/denoise-dada2/table.qza \
+  --o-visualization Results/denoise-dada2/table.qzv \
+  --m-sample-metadata-file Results/denoise-dada2/sample-metadata.tsv
+
+qiime feature-table tabulate-seqs \
+  --i-data rep-seqs.qza \
+  --o-visualization rep-seqs.qzv
+
+qiime metadata tabulate \
+  --m-input-file denoising-stats.qza \
+  --o-visualization denoising-stats.qzv
+```
 ``` bash 
 qiime feature-table summarize \
   --i-data Results/denoise/table.qza \
