@@ -20,6 +20,12 @@ qiime vsearch merge-pairs \
   --i-demultiplexed-seqs sequences.qza \
   --o-merged-sequences  \
   --o-unmerged-sequences sequences-unjoined.qza
+
+qiime vsearch merge-pairs \
+  --i-demultiplexed-seqs sequences.qza \
+  --o-merged-sequences  \
+  --o-unmerged-sequences sequences-unjoined.qza
+
 ```
 
 #  The overlab region was to small to merge pairs so we used dada2 with overlap 20
