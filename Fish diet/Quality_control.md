@@ -1,3 +1,4 @@
+``` bash 
 # Step 1: Download and prepare the reference genome
 wget https://ftp.ensembl.org/pub/release-113/fasta/oreochromis_niloticus/dna/Oreochromis_niloticus.O_niloticus_UMD_NMBU.dna.toplevel.fa.gz
 
@@ -28,3 +29,5 @@ for sample in "${samples[@]}"; do
     # Extract unaligned reads
     samtools fastq -f 4 "${sample}_unaligned_reads.bam" > "${sample}_unaligned_reads.fastq"
 done
+
+```
