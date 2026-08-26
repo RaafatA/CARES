@@ -16,10 +16,8 @@ Title: Optimizing Wheat-Berseem Intercrop Yields: Machine Learning Analysis
 
 Key Capabilities:
 1. Biomass Units: Standardized as Weight (g/hill) for Wheat Shoot DW and Total System Biomass.
-2. Dual Export: Saves all diagnostic and SHAP figures in BOTH high-res PNG (300 DPI) and SVG formats.
-3. Multi-Protocol Cross-Validation (Random 5-Fold, Spatial Group-K-Fold across 10 Blocks, 2-Season LOSO).
-4. Synchronized spatial array indexing for calibrated predicted-vs-actual parity plots (R² = 0.71–0.89).
-5. Dynamic SHAP attribution rendering using the best-performing model (XGBoost / Gaussian Process).
+2. Multi-Protocol Cross-Validation (Random 5-Fold, Spatial Group-K-Fold across 10 Blocks, 2-Season LOSO).
+3. Dynamic SHAP attribution rendering using the best-performing model (XGBoost / Gaussian Process).
 """
 
 import os
