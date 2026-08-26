@@ -50,8 +50,7 @@ class WheatBerseemFeatureEngine:
             'Fish_effluent': 6.8
         }
         
-        # Exact cumulative seasonal irrigation volumes (m³/ha) from experimental calibration table
-        # 100% FC = 987.619 mm = 9876.19 m³/ha | 50% FC = 569.905 mm = 5699.05 m³/ha
+
         self.irrigation_volume_map = {
             'full': 9876.19,
             'half': 5699.05
