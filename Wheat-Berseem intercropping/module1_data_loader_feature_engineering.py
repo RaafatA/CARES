@@ -1,3 +1,11 @@
+###########################################################
+##
+##   Project:  Wheat-Berseem intercropping
+##   Date:    16/08/2026
+##   Author:  Rafat A. Eissa
+##
+###########################################################
+
 """
 MODULE 1: PRODUCTION DATA INGESTION & EMPIRICAL COMPETITION ENGINE (REVISED)
 =============================================================================
