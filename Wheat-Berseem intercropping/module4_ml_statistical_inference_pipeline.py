@@ -1,14 +1,17 @@
-"""
-MODULE 4: RIGOROUS MACHINE LEARNING STATISTICAL INFERENCE & HYPOTHESIS TESTING PIPELINE (REVISED)
-================================================================================================
-Title: Statistical Verification Suite for Machine Learning Models, SHAP Concordance, 
-       Residual Hypotheses, and Factorial Error ANOVA in Wheat-Berseem Intercropping
+###########################################################
+##
+##   Project:  Wheat-Berseem intercropping
+##   Date:    16/08/2026
+##   Author:  Rafat A. Eissa
+##
+###########################################################
 
-Updates:
-1. Biomass Units: Standardized as Weight (g/hill) for Wheat Shoot DW and Total System Biomass.
-2. Dual Export: Saves all statistical figures in BOTH high-res PNG (300 DPI) and vector SVG formats.
-3. Safe Scalar p-value extraction across all SciPy versions.
-4. Comprehensive Statistical Suite:
+
+"""
+MODULE 4
+================================================================================================
+Statistical Verification Suite for Machine Learning Models, SHAP Concordance, 
+       Residual Hypotheses, and Factorial Error ANOVA in Wheat-Berseem Intercropping
    - Omnibus Friedman & Repeated-Measures ANOVA
    - Post-hoc Pairwise Wilcoxon Signed-Rank Tests (Holm-Bonferroni Adjusted)
    - Kendall’s Coefficient of Concordance (W) & Spearman Matrix on SHAP Rankings
@@ -27,7 +30,6 @@ import warnings
 
 warnings.filterwarnings('ignore')
 
-# Set scientific publication aesthetic parameters
 plt.rcParams['font.sans-serif'] = 'DejaVu Sans'
 plt.rcParams['font.family'] = 'sans-serif'
 plt.rcParams['figure.autolayout'] = False
@@ -145,7 +147,7 @@ class MLStatisticalInferenceEngine:
         return fold_df, fold_scores_dict, oof_predictions, y_all
 
     # =========================================================================
-    # 2. MODEL COMPARISON HYPOTHESIS TESTS (FRIEDMAN & WILCOXON POST-HOC)
+    # 2. MODEL COMPARISON TESTS (FRIEDMAN & WILCOXON POST-HOC)
     # =========================================================================
     def run_model_comparison_tests(self, fold_scores_dict, target_col='LER_Total'):
         models = list(fold_scores_dict.keys())
@@ -427,7 +429,7 @@ class MLStatisticalInferenceEngine:
         return anova_df
 
     # =========================================================================
-    # 6. HIGH-RESOLUTION STATISTICAL VISUALIZATIONS (PNG + SVG DUAL EXPORT)
+    # 6. VISUALIZATIONS
     # =========================================================================
     def generate_statistical_figures(self, fold_df, omnibus_df, pairwise_df, concordance_df,
                                      top_shap_df, spearman_matrix, models_list,
