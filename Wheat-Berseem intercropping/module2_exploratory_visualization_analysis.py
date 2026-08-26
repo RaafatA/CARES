@@ -133,7 +133,7 @@ class IntercroppingExploratoryVisualizer:
         print(f"[+] Saved Fig '{base_name}' -> PNG & SVG")
 
     # =========================================================================
-    # FIGURE 1: AGRO-METEOROLOGICAL & ATMOSPHERIC DYNAMICS (18-DEC TO LATE APRIL)
+    # FIGURE 1: weather
     # =========================================================================
     def plot_fig1_weather_dynamics(self):
         """Figure 1: Multi-Seasonal Agro-Meteorological Dynamics (VPD, GDD, Temperature, Rainfall: 18-Dec to late April)."""
@@ -164,9 +164,9 @@ class IntercroppingExploratoryVisualizer:
             ax2.legend(loc='upper left', frameon=True)
             ax2.grid(True)
             
-            ax3.set_xlabel('Days After Sowing (DAS: 18-Dec to late April / ~150 Days Average)', fontsize=11, fontweight='bold')
+            ax3.set_xlabel('Days After Sowing', fontsize=11, fontweight='bold')
             ax3.set_ylabel('Thermal Time (°C·days)', fontsize=11, fontweight='bold')
-            ax3.set_title('(C) Accumulated Growing Degree Days (GDD Base 5.0 °C)', fontsize=12, fontweight='bold', loc='left')
+            ax3.set_title('(C) Accumulated Growing Degree Days', fontsize=12, fontweight='bold', loc='left')
             ax3.legend(loc='upper left', frameon=True)
             ax3.grid(True)
 
@@ -192,7 +192,6 @@ class IntercroppingExploratoryVisualizer:
             ax4.set_ylabel('Thermal Time (°C·days)', fontsize=10, fontweight='bold')
             ax4.grid(axis='y')
 
-        plt.suptitle('Figure 1: Multi-Seasonal Agro-Meteorological Profiles and Thermal Accumulation (18-Dec to late April)', fontsize=14, fontweight='bold', y=0.995)
         plt.tight_layout()
         self._save_dual_format(fig, 'Fig1_AgroMeteorological_Dynamics')
         plt.close()
@@ -557,7 +556,7 @@ class IntercroppingExploratoryVisualizer:
         plt.close()
 
     # =========================================================================
-    # EXECUTION PIPELINE
+    # THE PIPELINE
     # =========================================================================
     def generate_all_publication_figures(self):
         print("=====================================================================")
