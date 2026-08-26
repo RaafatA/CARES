@@ -1,3 +1,12 @@
+###########################################################
+##
+##   Project:  Wheat-Berseem intercropping
+##   Date:    16/08/2026
+##   Author:  Rafat A. Eissa
+##
+###########################################################
+
+
 """
 MODULE 3: ADVANCED MACHINE LEARNING MODELING, MULTI-PROTOCOL CV EVALUATION, 
           MULTICOLLINEARITY MITIGATION, & STRATIFIED DIAGNOSTICS (REVISED)
