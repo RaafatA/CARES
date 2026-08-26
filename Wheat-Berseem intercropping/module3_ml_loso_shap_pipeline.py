@@ -33,7 +33,6 @@ import scipy.stats as stats
 
 warnings.filterwarnings('ignore')
 
-# Set scientific publication style
 plt.rcParams['font.sans-serif'] = 'DejaVu Sans'
 plt.rcParams['font.family'] = 'sans-serif'
 plt.rcParams['figure.autolayout'] = False
@@ -67,7 +66,7 @@ except ImportError:
 
 
 # =============================================================================
-# 1. NATIVE PURE-PYTHON / NUMPY ULTRA-FAST MACHINE LEARNING REGRESSORS
+# 1. NUMPY MACHINE LEARNING REGRESSORS
 # =============================================================================
 
 class NativeLinearRegression:
@@ -304,7 +303,7 @@ class NativeGaussianProcess:
 
 
 # =============================================================================
-# 2. INTERCROPPING MACHINE LEARNING & DIAGNOSTICS ENGINE
+# 2. INTERCROPPING MACHINE LEARNING 
 # =============================================================================
 
 class IntercroppingMachineLearningEngine:
