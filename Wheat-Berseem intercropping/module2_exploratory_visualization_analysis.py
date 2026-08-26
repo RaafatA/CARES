@@ -1,3 +1,12 @@
+###########################################################
+##
+##   Project:  Wheat-Berseem intercropping
+##   Date:    16/08/2026
+##   Author:  Rafat A. Eissa
+##
+###########################################################
+
+
 """
 MODULE 2: EXPLORATORY DATA ANALYSIS (EDA) & PUBLICATION-QUALITY VISUALIZATION (REVISED)
 =======================================================================================
